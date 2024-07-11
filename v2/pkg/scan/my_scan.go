@@ -13,6 +13,31 @@ import (
 	"time"
 )
 
+func (s *Scanner) Close2() {
+	//retries       int
+	//	rate          int
+	//	portThreshold int
+	//	timeout       time.Duration
+	//	proxyDialer   proxy.Dialer
+	//
+	//	Ports    []*port.Port
+	//	IPRanger *ipranger.IPRanger
+	//
+	//	HostDiscoveryResults *result.Result
+	//	ScanResults          *result.Result
+	//	NetworkInterface     *net.Interface
+	//	cdn                  *cdncheck.Client
+	//	tcpsequencer         *TCPSequencer
+	//	stream               bool
+	//	ListenHandler        *ListenHandler
+	//	OnReceive            result.ResultFn
+	defer func() {
+		recover()
+	}()
+	s.ListenHandler.Busy = false
+	s.ListenHandler = nil
+}
+
 // ConnectPort2 a single host and port
 func (s *Scanner) ConnectPort2(host string, p *port.Port, timeout time.Duration) (bool, error) {
 	hostport := net.JoinHostPort(host, fmt.Sprint(p.Port))

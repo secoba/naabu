@@ -20,9 +20,27 @@ import (
 	"net"
 	"net/http"
 	"net/url"
+	"os"
 	"strconv"
 	"time"
 )
+
+func (r *Runner) Close2() {
+	defer func() {
+		recover()
+	}()
+	_ = os.RemoveAll(r.targetsFile)
+	_ = r.scanner.IPRanger.Hosts.Close()
+	if r.options.EnableProgressBar {
+		_ = r.stats.Stop()
+	}
+	if r.scanner != nil {
+		r.scanner.Close2()
+	}
+	if r.limiter != nil {
+		r.limiter.Stop()
+	}
+}
 
 func (r *Runner) handleHostPort2(ctx context.Context, host string, p *port.Port) {
 	defer r.wgscan.Done()
