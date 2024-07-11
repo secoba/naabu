@@ -32,7 +32,9 @@ func (s *Scanner) Close2() {
 	//	ListenHandler        *ListenHandler
 	//	OnReceive            result.ResultFn
 	defer func() {
-		recover()
+		if e := recover(); e != nil {
+			fmt.Println(e)
+		}
 	}()
 	s.ListenHandler.Busy = false
 	s.ListenHandler = nil

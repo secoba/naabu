@@ -27,7 +27,9 @@ import (
 
 func (r *Runner) Close2() {
 	defer func() {
-		recover()
+		if e := recover(); e != nil {
+			fmt.Println(e)
+		}
 	}()
 	_ = os.RemoveAll(r.targetsFile)
 	_ = r.scanner.IPRanger.Hosts.Close()
