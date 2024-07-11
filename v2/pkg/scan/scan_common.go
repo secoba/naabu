@@ -5,8 +5,8 @@ import (
 	"net"
 
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/naabu/v2/pkg/privileges"
-	"github.com/projectdiscovery/naabu/v2/pkg/routing"
+	"github.com/secoba/naabu/v2/pkg/privileges"
+	"github.com/secoba/naabu/v2/pkg/routing"
 	"golang.org/x/net/icmp"
 )
 

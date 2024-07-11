@@ -5,10 +5,10 @@ import (
 	"strings"
 
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/naabu/v2/pkg/privileges"
-	"github.com/projectdiscovery/naabu/v2/pkg/scan"
 	osutil "github.com/projectdiscovery/utils/os"
 	updateutils "github.com/projectdiscovery/utils/update"
+	"github.com/secoba/naabu/v2/pkg/privileges"
+	"github.com/secoba/naabu/v2/pkg/scan"
 )
 
 const banner = `

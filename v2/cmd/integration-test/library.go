@@ -6,10 +6,10 @@ import (
 	"os"
 	"os/user"
 
-	"github.com/projectdiscovery/naabu/v2/internal/testutils"
-	"github.com/projectdiscovery/naabu/v2/pkg/privileges"
-	"github.com/projectdiscovery/naabu/v2/pkg/result"
-	"github.com/projectdiscovery/naabu/v2/pkg/runner"
+	"github.com/secoba/naabu/v2/internal/testutils"
+	"github.com/secoba/naabu/v2/pkg/privileges"
+	"github.com/secoba/naabu/v2/pkg/result"
+	"github.com/secoba/naabu/v2/pkg/runner"
 )
 
 var libraryTestcases = map[string]testutils.TestCase{

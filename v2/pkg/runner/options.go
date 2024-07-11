@@ -4,10 +4,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/projectdiscovery/naabu/v2/pkg/privileges"
-	"github.com/projectdiscovery/naabu/v2/pkg/result"
-	"github.com/projectdiscovery/naabu/v2/pkg/scan"
 	fileutil "github.com/projectdiscovery/utils/file"
+	"github.com/secoba/naabu/v2/pkg/privileges"
+	"github.com/secoba/naabu/v2/pkg/result"
+	"github.com/secoba/naabu/v2/pkg/scan"
 
 	"github.com/projectdiscovery/goflags"
 	"github.com/projectdiscovery/gologger"

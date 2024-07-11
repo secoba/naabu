@@ -5,10 +5,10 @@ import (
 	"net"
 
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/naabu/v2/pkg/scan"
 	iputil "github.com/projectdiscovery/utils/ip"
 	osutil "github.com/projectdiscovery/utils/os"
 	sliceutil "github.com/projectdiscovery/utils/slice"
+	"github.com/secoba/naabu/v2/pkg/scan"
 )
 
 func (r *Runner) host2ips(target string) (targetIPsV4 []string, targetIPsV6 []string, err error) {

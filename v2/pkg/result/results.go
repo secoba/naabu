@@ -3,7 +3,7 @@ package result
 import (
 	"sync"
 
-	"github.com/projectdiscovery/naabu/v2/pkg/port"
+	"github.com/secoba/naabu/v2/pkg/port"
 	"golang.org/x/exp/maps"
 )
 

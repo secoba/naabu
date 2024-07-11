@@ -24,11 +24,6 @@ import (
 	"github.com/projectdiscovery/dnsx/libs/dnsx"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/mapcidr"
-	"github.com/projectdiscovery/naabu/v2/pkg/port"
-	"github.com/projectdiscovery/naabu/v2/pkg/privileges"
-	"github.com/projectdiscovery/naabu/v2/pkg/protocol"
-	"github.com/projectdiscovery/naabu/v2/pkg/result"
-	"github.com/projectdiscovery/naabu/v2/pkg/scan"
 	"github.com/projectdiscovery/ratelimit"
 	"github.com/projectdiscovery/retryablehttp-go"
 	"github.com/projectdiscovery/uncover/sources/agent/shodanidb"
@@ -36,6 +31,11 @@ import (
 	iputil "github.com/projectdiscovery/utils/ip"
 	sliceutil "github.com/projectdiscovery/utils/slice"
 	"github.com/remeh/sizedwaitgroup"
+	"github.com/secoba/naabu/v2/pkg/port"
+	"github.com/secoba/naabu/v2/pkg/privileges"
+	"github.com/secoba/naabu/v2/pkg/protocol"
+	"github.com/secoba/naabu/v2/pkg/result"
+	"github.com/secoba/naabu/v2/pkg/scan"
 )
 
 // Runner is an instance of the port enumeration

@@ -7,7 +7,7 @@ import (
 
 	_ "github.com/projectdiscovery/fdmax/autofdmax"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/naabu/v2/pkg/runner"
+	"github.com/secoba/naabu/v2/pkg/runner"
 )
 
 func main() {
