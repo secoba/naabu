@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/projectdiscovery/blackrock"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/mapcidr"
@@ -56,6 +57,10 @@ func (r *Runner) RunEnumeration2(pctx context.Context) error {
 	ctx, cancel := context.WithCancel(pctx)
 	defer cancel()
 
+	if r.scanner == nil || r.scanner.ListenHandler == nil {
+		return errors.New("closed2")
+	}
+
 	if privileges.IsPrivileged && r.options.ScanType == SynScan {
 		// Set values if those were specified via cli, errors are fatal
 		if r.options.SourceIP != "" {
@@ -98,6 +103,9 @@ func (r *Runner) RunEnumeration2(pctx context.Context) error {
 	if shouldDiscoverHosts && shouldUseRawPackets {
 		// perform host discovery
 		showHostDiscoveryInfo()
+		if r.scanner == nil || r.scanner.ListenHandler == nil {
+			return errors.New("closed2")
+		}
 		r.scanner.ListenHandler.Phase.Set(scan.HostDiscovery)
 		// shrinks the ips to the minimum amount of cidr
 		_, targetsV4, targetsv6, _, err := r.GetTargetIps(r.getPreprocessedIps)
@@ -148,6 +156,9 @@ func (r *Runner) RunEnumeration2(pctx context.Context) error {
 	switch {
 	case r.options.Stream && !r.options.Passive: // stream active
 		showNetworkCapabilities(r.options)
+		if r.scanner == nil || r.scanner.ListenHandler == nil {
+			return errors.New("closed2")
+		}
 		r.scanner.ListenHandler.Phase.Set(scan.Scan)
 
 		handleStreamIp := func(target string, port *port.Port) bool {
@@ -193,6 +204,9 @@ func (r *Runner) RunEnumeration2(pctx context.Context) error {
 		showNetworkCapabilities(r.options)
 		// create retryablehttp instance
 		httpClient := retryablehttp.NewClient(retryablehttp.DefaultOptionsSingle)
+		if r.scanner == nil || r.scanner.ListenHandler == nil {
+			return errors.New("closed2")
+		}
 		r.scanner.ListenHandler.Phase.Set(scan.Scan)
 		for target := range r.streamChannel {
 			if err := r.scanner.IPRanger.Add(target.Cidr); err != nil {
@@ -282,6 +296,10 @@ func (r *Runner) RunEnumeration2(pctx context.Context) error {
 		}
 		portsCount = uint64(len(r.scanner.Ports))
 		targetsWithPortCount = uint64(len(targetsWithPort))
+
+		if r.scanner == nil || r.scanner.ListenHandler == nil {
+			return errors.New("closed2")
+		}
 
 		r.scanner.ListenHandler.Phase.Set(scan.Scan)
 		Range := targetsCount * portsCount
@@ -410,6 +428,10 @@ func (r *Runner) RunEnumeration2(pctx context.Context) error {
 
 		if r.options.WarmUpTime > 0 {
 			time.Sleep(time.Duration(r.options.WarmUpTime) * time.Second)
+		}
+
+		if r.scanner == nil || r.scanner.ListenHandler == nil {
+			return errors.New("closed2")
 		}
 
 		r.scanner.ListenHandler.Phase.Set(scan.Done)
